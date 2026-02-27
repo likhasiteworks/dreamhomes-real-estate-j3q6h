@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamHomes - Find Your Perfect Property</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 font-sans text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-40 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="home" class="w-8 h-8 text-blue-600"></i>
+                    <span class="text-2xl font-bold text-gray-900">DreamHomes</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition">Home</a>
+                    <a href="#properties" class="text-gray-700 hover:text-blue-600 font-medium transition">Properties</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition">About</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition">Contact</a>
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition transform hover:scale-105">
+                        List Property
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2" id="mobileMenuBtn">
+                    <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white border-t" id="mobileMenu">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#" class="block py-2 text-gray-700 font-medium">Home</a>
+                <a href="#properties" class="block py-2 text-gray-700 font-medium">Properties</a>
+                <a href="#" class="block py-2 text-gray-700 font-medium">About</a>
+                <a href="#" class="block py-2 text-gray-700 font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="http://static.photos/estate/1200x630/42" alt="Luxury Home" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up">
+                Find Your <span class="text-blue-400">Dream Home</span> Today
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto animate-fade-in-up delay-100">
+                Discover luxury properties in prime locations. Whether you're buying, selling, or renting, we make your real estate journey seamless.
+            </p>
+
+            <!-- Search Bar -->
+            <div class="bg-white p-2 rounded-2xl shadow-2xl max-w-3xl mx-auto transform hover:scale-[1.02] transition duration-300 animate-fade-in-up delay-200">
+                <div class="flex flex-col md:flex-row gap-2">
+                    <div class="flex-1 flex items-center px-4 py-3 bg-gray-50 rounded-xl md:rounded-l-xl md:rounded-r-none">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-gray-400 mr-3"></i>
+                        <input type="text" placeholder="Enter location..." class="bg-transparent w-full outline-none text-gray-700 placeholder-gray-400" id="searchInput">
+                    </div>
+                    <div class="flex items-center px-4 py-3 bg-gray-50 rounded-xl md:rounded-none border-t md:border-t-0 md:border-l border-gray-200">
+                        <i data-lucide="home" class="w-5 h-5 text-gray-400 mr-3"></i>
+                        <select class="bg-transparent outline-none text-gray-700 cursor-pointer" id="propertyType">
+                            <option value="all">All Types</option>
+                            <option value="house">House</option>
+                            <option value="apartment">Apartment</option>
+                            <option value="condo">Condo</option>
+                            <option value="villa">Villa</option>
+                        </select>
+                    </div>
+                    <button class="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition flex items-center justify-center gap-2" onclick="handleSearch()">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                        <span>Search</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="flex flex-wrap justify-center gap-8 mt-12 text-white animate-fade-in-up delay-300">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-400">2,500+</div>
+                    <div class="text-sm text-gray-300">Properties</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-400">1,200+</div>
+                    <div class="text-sm text-gray-300">Happy Clients</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-400">50+</div>
+                    <div class="text-sm text-gray-300">Cities</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-8 h-8 text-white/80"></i>
+        </div>
+    </section>
+
+    <!-- Featured Properties Section -->
+    <section id="properties" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Properties</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Handpicked properties featuring the best locations, modern amenities, and exceptional value.</p>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+            <button class="filter-btn active px-6 py-2 rounded-full border-2 border-blue-600 bg-blue-600 text-white font-medium transition hover:shadow-lg" data-filter="all">All</button>
+            <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-300 text-gray-700 font-medium hover:border-blue-600 hover:text-blue-600 transition" data-filter="house">Houses</button>
+            <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-300 text-gray-700 font-medium hover:border-blue-600 hover:text-blue-600 transition" data-filter="apartment">Apartments</button>
+            <button class="filter-btn px-6 py-2 rounded-full border-2 border-gray-300 text-gray-700 font-medium hover:border-blue-600 hover:text-blue-600 transition" data-filter="condo">Condos</button>
+        </div>
+
+        <!-- Properties Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="propertiesGrid">
+            <!-- Properties will be injected here by JavaScript -->
+        </div>
+
+        <!-- Load More -->
+        <div class="text-center mt-12">
+            <button class="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-full font-medium hover:border-blue-600 hover:text-blue-600 transition">
+                Load More Properties
+            </button>
+        </div>
+    </section>
+
+    <!-- Property Details Modal -->
+    <div id="propertyModal" class="fixed inset-0 z-50 hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="absolute inset-0 md:inset-10 bg-white md:rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl transform transition-transform scale-100">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 bg-white/90 p-2 rounded-full hover:bg-white transition shadow-lg">
+                <i data-lucide="x" class="w-6 h-6 text-gray-700"></i>
+            </button>
+
+            <!-- Left Side - Gallery -->
+            <div class="w-full md:w-1/2 bg-gray-100 flex flex-col">
+                <div class="flex-1 relative">
+                    <img id="modalMainImage" src="" alt="Property" class="w-full h-full object-cover">
+                    <div class="absolute bottom-4 left-4 bg-white/90 px-4 py-2 rounded-lg">
+                        <span id="modalPrice" class="text-2xl font-bold text-blue-600"></span>
+                    </div>
+                </div>
+                <div class="h-24 bg-white p-4 flex gap-2 overflow-x-auto" id="modalThumbnails">
+                    <!-- Thumbnails injected here -->
+                </div>
+            </div>
+
+            <!-- Right Side - Details -->
+            <div class="w-full md:w-1/2 overflow-y-auto p-6 md:p-8">
+                <div class="mb-6">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span id="modalType" class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium"></span>
+                        <span class="text-gray-500 text-sm" id="modalId"></span>
+                    </div>
+                    <h2 id="modalTitle" class="text-3xl font-bold text-gray-900 mb-2"></h2>
+                    <div class="flex items-center text-gray-600">
+                        <i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>
+                        <span id="modalLocation"></span>
+                    </div>
+                </div>
+
+                <!-- Key Stats -->
+                <div class="grid grid-cols-3 gap-4 mb-8 p-4 bg-gray-50 rounded-xl">
+                    <div class="text-center">
+                        <i data-lucide="bed" class="w-6 h-6 mx-auto mb-2 text-blue-600"></i>
+                        <div class="font-semibold text-gray-900" id="modalBeds"></div>
+                        <div class="text-sm text-gray-500">Bedrooms</div>
+                    </div>
+                    <div class="text-center border-x border-gray-200">
+                        <i data-lucide="bath" class="w-6 h-6 mx-auto mb-2 text-blue-600"></i>
+                        <div class="font-semibold text-gray-900" id="modalBaths"></div>
+                        <div class="text-sm text-gray-500">Bathrooms</div>
+                    </div>
+                    <div class="text-center">
+                        <i data-lucide="maximize" class="w-6 h-6 mx-auto mb-2 text-blue-600"></i>
+                        <div class="font-semibold text-gray-900" id="modalSqft"></div>
+                        <div class="text-sm text-gray-500">Sq Ft</div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold mb-3">Description</h3>
+                    <p id="modalDescription" class="text-gray-600 leading-relaxed"></p>
+                </div>
+
+                <!-- Additional Details -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold mb-3">Property Details</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex justify-between py-2 border-b border-gray-100">
+                            <span class="text-gray-500">Property Type</span>
+                            <span class="font-medium" id="modalDetailType"></span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-gray-100">
+                            <span class="text-gray-500">Year Built</span>
+                            <span class="font-medium" id="modalYear"></span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-gray-100">
+                            <span class="text-gray-500">Status</span>
+                            <span class="font-medium text-green-600">Available</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-gray-100">
+                            <span class="text-gray-500">Parking</span>
+                            <span class="font-medium">2 Spaces</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Placeholder -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold mb-3">Location</h3>
+                    <div class="bg-gray-200 rounded-xl h-48 w-full overflow-hidden relative">
+                        <img src="http://static.photos/cityscape/640x360/88" alt="Map" class="w-full h-full object-cover opacity-60">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-white px-4 py-2 rounded-lg shadow-lg flex items-center gap-2">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-red-500"></i>
+                                <span class="font-medium text-gray-700">View on Map</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-4">
+                    <button class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                        Schedule Tour
+                    </button>
+                    <button class="flex-1 border-2 border-blue-600 text-blue-600 py-3 rounded-xl font-semibold hover:bg-blue-50 transition flex items-center justify-center gap-2">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        Contact Agent
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-lucide="home" class="w-6 h-6 text-blue-400"></i>
+                        <span class="text-xl font-bold">DreamHomes</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Your trusted partner in finding the perfect property. Premium listings, exceptional service.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Properties</a></li>
+                        <li><a href="#" class="hover:text-white transition">Services</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4"></i> (555) 123-4567</li>
+                        <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4"></i> info@dreamhomes.com</li>
+                        <li class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4"></i> 123 Realty Lane, NY</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Newsletter</h4>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Your email" class="bg-gray-800 px-4 py-2 rounded-lg flex-1 outline-none focus:ring-2 focus:ring-blue-600 text-sm">
+                        <button class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                © 2024 DreamHomes Real Estate. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
